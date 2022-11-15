@@ -552,16 +552,16 @@ export class JsonSchemaGenerator {
             if (comments.length) {
                 definition.description = comments
                     .map((comment) => {
-                      const newlineNormalizedComment = comment.text.replace(/\r\n/g, "\n");
+                        const newlineNormalizedComment = comment.text.replace(/\r\n/g, "\n");
 
-                      // If a comment contains a "{@link XYZ}" inline tag that could not be
-                      // resolved by the TS checker, then this comment will contain a trailing
-                      // whitespace that we need to remove.
-                      if (comment.kind === "linkText") {
-                        return newlineNormalizedComment.trim();
-                      }
+                        // If a comment contains a "{@link XYZ}" inline tag that could not be
+                        // resolved by the TS checker, then this comment will contain a trailing
+                        // whitespace that we need to remove.
+                        if (comment.kind === "linkText") {
+                            return newlineNormalizedComment.trim();
+                        }
 
-                      return newlineNormalizedComment;
+                        return newlineNormalizedComment;
                     })
                     .join("").trim();
             }
@@ -695,7 +695,7 @@ export class JsonSchemaGenerator {
                     if (
                         propertyType.flags & ts.TypeFlags.Object &&
                         (propertyType as ts.ObjectType).objectFlags &
-                            (ts.ObjectFlags.Anonymous | ts.ObjectFlags.Interface | ts.ObjectFlags.Mapped)
+                        (ts.ObjectFlags.Anonymous | ts.ObjectFlags.Interface | ts.ObjectFlags.Mapped)
                     ) {
                         definition.type = "object";
                         definition.additionalProperties = false;
@@ -1176,7 +1176,7 @@ export class JsonSchemaGenerator {
 
     private recursiveTypeRef = new Map();
 
-    private getTypeDefinition(
+    public getTypeDefinition(
         typ: ts.Type,
         asRef = this.args.ref,
         unionModifier: string = "anyOf",
@@ -1411,12 +1411,12 @@ export class JsonSchemaGenerator {
         this.schemaOverrides.set(symbolName, schema);
     }
 
-    public getSchemaForSymbol(symbolName: string, includeReffedDefinitions: boolean = true): Definition {
+    public getSchemaForSymbol(symbolName: string, includeReffedDefinitions: boolean = true, clean: boolean = true): Definition {
         if (!this.allSymbols[symbolName]) {
             throw new Error(`type ${symbolName} not found`);
         }
 
-        this.resetSchemaSpecificProperties();
+        if (clean) this.resetSchemaSpecificProperties();
 
         const def = this.getTypeDefinition(
             this.allSymbols[symbolName],

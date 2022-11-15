@@ -550,6 +550,25 @@ export interface Text {
 ```
 
 
+## [comments-inline-tags](./test/programs/comments-inline-tags)
+
+```ts
+/**
+ * This is MyOtherObject
+ */
+interface MyOtherObject {
+  prop1: string;
+}
+
+/**
+ * This is MyObject. It extends {@link MyOtherObject} and {@link SomeOtherObject}.
+ */
+interface MyObject extends MyOtherObject {
+  prop2: string;
+}
+```
+
+
 ## [comments-override](./test/programs/comments-override)
 
 ```ts
@@ -1235,6 +1254,29 @@ export class MyObject {
     publicMember: string;
     private privateMember: string;
 }
+```
+
+
+## [prop-override](./test/programs/prop-override)
+
+```ts
+import type { ObjectId } from './third-party'
+
+export type MyObject = {
+  /**
+   * @TJS-type string
+   * @description Overrides aliased type definition with this JSDoc if at least TJS-type annotation is present
+   */
+  _id: ObjectId
+}
+```
+
+
+## [prop-override](./test/programs/prop-override)
+
+```ts
+// cannot modify with JSDoc because third-party sources
+export class ObjectId {}
 ```
 
 
