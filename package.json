@@ -1,5 +1,5 @@
 {
-  "name": "@itegulov/typescript-json-schema",
+  "name": "near-typescript-json-schema",
   "version": "0.54.1",
   "description": "typescript-json-schema generates JSON Schema files from your Typescript sources",
   "main": "dist/typescript-json-schema.js",
