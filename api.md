@@ -1828,22 +1828,24 @@ type integer = number;
 
 class MyObject {
 
-    boolean1: boolean     = true;
+    boolean1: boolean = true;
 
-    number1: number       = 1;
+    number1: number = 1;
 
     /** @TJS-type integer */
-    integer1: number      = 1;
-    integer2: integer     = 1;
+    integer1: number = 1;
+    integer2: integer = 1;
 
-    string1: string       = "defaultValue";
+    bigint1: bigint = null;
 
-    array1: Array<any>    = null;
+    string1: string = "defaultValue";
+
+    array1: Array<any> = null;
     array2: Array<number> = null;
 
-    object1: any          = null;
-    object2: {}           = null;
-    object3: object       = null;
+    object1: any = null;
+    object2: {} = null;
+    object3: object = null;
 
 }
 ```
